@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Word Grid</title>
+    <title>Word Grid</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,34 +17,41 @@
             grid-template-columns: repeat(5, 1fr);
             gap: 10px;
         }
-        .box {
-            width: 50px;
-            height: 50px;
+        .word {
+            padding: 20px;
             background-color: #fff;
             border: 1px solid #000;
-            cursor: pointer;
-        }
-        .black {
-            background-color: #000;
         }
     </style>
 </head>
 <body>
-    <h1>Interactive Word Grid</h1>
-    <div class="grid" id="grid"></div>
+    <h1>Word Grid</h1>
+    <div class="grid" id="wordGrid"></div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const grid = document.getElementById('grid');
-            const numOfBoxes = 25;
+            const wordBank = [
+                "apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
+                "mango", "nectarine", "orange", "papaya", "quince", "raspberry", "strawberry", "tangerine", "ugli fruit", "vanilla",
+                "watermelon", "xigua", "yellow passion fruit", "zucchini", "apricot", "blackberry", "cantaloupe", "dragonfruit",
+                "elderberry", "feijoa", "grapefruit", "huckleberry", "jackfruit", "kumquat", "lime", "mulberry", "nectarine",
+                "olive", "peach", "pineapple", "plum", "pomegranate", "starfruit", "tomato", "ugni", "voavanga", "wolfberry",
+                "yumberry", "ziziphus"
+            ];
 
-            for (let i = 0; i < numOfBoxes; i++) {
-                const box = document.createElement('div');
-                box.className = 'box';
-                box.addEventListener('click', () => {
-                    box.classList.toggle('black');
-                });
-                grid.appendChild(box);
+            function getRandomWords(words, count) {
+                const shuffled = words.sort(() => 0.5 - Math.random());
+                return shuffled.slice(0, count);
             }
+
+            const wordGrid = document.getElementById('wordGrid');
+            const wordsToDisplay = getRandomWords(wordBank, 25);
+
+            wordsToDisplay.forEach(word => {
+                const wordElement = document.createElement('div');
+                wordElement.className = 'word';
+                wordElement.textContent = word;
+                wordGrid.appendChild(wordElement);
+            });
         });
     </script>
 </body>
