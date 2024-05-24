@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Word Grid</title>
+    <title>Interactive Word Grid 4</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            padding: 20px;
             background-color: #f5f5f5;
         }
         .grid {
@@ -58,46 +53,48 @@
     <h1>Interactive Word Grid</h1>
     <div class="grid" id="wordGrid"></div>
     <script>
-        const wordBank = [
-            "apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
-            "mango", "nectarine", "orange", "papaya", "quince", "raspberry", "strawberry", "tangerine", "ugli fruit", "vanilla",
-            "watermelon", "xigua", "yellow passion fruit", "zucchini", "apricot", "blackberry", "cantaloupe", "dragonfruit",
-            "elderberry", "feijoa", "grapefruit", "huckleberry", "jackfruit", "kumquat", "lime", "mulberry", "nectarine",
-            "olive", "peach", "pineapple", "plum", "pomegranate", "starfruit", "tomato", "ugni", "voavanga", "wolfberry",
-            "yumberry", "ziziphus"
-        ];
+        document.addEventListener('DOMContentLoaded', function() {
+            const wordBank = [
+                "apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon",
+                "mango", "nectarine", "orange", "papaya", "quince", "raspberry", "strawberry", "tangerine", "ugli fruit", "vanilla",
+                "watermelon", "xigua", "yellow passion fruit", "zucchini", "apricot", "blackberry", "cantaloupe", "dragonfruit",
+                "elderberry", "feijoa", "grapefruit", "huckleberry", "jackfruit", "kumquat", "lime", "mulberry", "nectarine",
+                "olive", "peach", "pineapple", "plum", "pomegranate", "starfruit", "tomato", "ugni", "voavanga", "wolfberry",
+                "yumberry", "ziziphus"
+            ];
 
-        function getRandomWords(words, count) {
-            const shuffled = words.sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
-
-        const wordGrid = document.getElementById('wordGrid');
-        const wordsToDisplay = getRandomWords(wordBank, 25);
-
-        wordsToDisplay.forEach(word => {
-            const wordElement = document.createElement('div');
-            wordElement.className = 'word';
-            wordElement.textContent = word;
-            wordElement.addEventListener('click', () => {
-                toggleState(wordElement);
-            });
-            wordGrid.appendChild(wordElement);
-        });
-
-        function toggleState(element) {
-            if (element.classList.contains('team1')) {
-                element.classList.remove('team1');
-                element.classList.add('team2');
-            } else if (element.classList.contains('team2')) {
-                element.classList.remove('team2');
-                element.classList.add('neutral');
-            } else if (element.classList.contains('neutral')) {
-                element.classList.remove('neutral');
-            } else {
-                element.classList.add('team1');
+            function getRandomWords(words, count) {
+                const shuffled = words.sort(() => 0.5 - Math.random());
+                return shuffled.slice(0, count);
             }
-        }
+
+            const wordGrid = document.getElementById('wordGrid');
+            const wordsToDisplay = getRandomWords(wordBank, 25);
+
+            wordsToDisplay.forEach(word => {
+                const wordElement = document.createElement('div');
+                wordElement.className = 'word';
+                wordElement.textContent = word;
+                wordElement.addEventListener('click', () => {
+                    toggleState(wordElement);
+                });
+                wordGrid.appendChild(wordElement);
+            });
+
+            function toggleState(element) {
+                if (element.classList.contains('team1')) {
+                    element.classList.remove('team1');
+                    element.classList.add('team2');
+                } else if (element.classList.contains('team2')) {
+                    element.classList.remove('team2');
+                    element.classList.add('neutral');
+                } else if (element.classList.contains('neutral')) {
+                    element.classList.remove('neutral');
+                } else {
+                    element.classList.add('team1');
+                }
+            }
+        });
     </script>
 </body>
 </html>
